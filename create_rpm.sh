@@ -6,4 +6,3 @@ sudo apt update && sudo apt install rpm -y
 mv hello_world.py hello_world
 # Create a rpm pachage
 rpmbuild -ba --build-in-place --define "_topdir $(pwd)/rpm" hello_world.spec
-
