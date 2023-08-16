@@ -19,14 +19,16 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - uses: actions/checkout@v3
-        - name: Install rpm for ubuntu
-          run: sudo apt update && sudo apt install rpm -y
-        - name: Rename python script
-          run: mv hello_world.py hello_world
-        - name: Create a rpm package
-          run:  rpmbuild -ba --build-in-place --define "_topdir $(pwd)/rpm" hello_world.spec
-        - name: Check package
-          run: ls -la rpm/RPMS/noarch
+        - name: Run script for package creation
+          run: bash create_rpm.sh
+        # - name: Install rpm for ubuntu
+        #   run: sudo apt update && sudo apt install rpm -y
+        # - name: Rename python script
+        #   run: mv hello_world.py hello_world
+        # - name: Create a rpm package
+        #   run:  rpmbuild -ba --build-in-place --define "_topdir $(pwd)/rpm" hello_world.spec
+        # - name: Check package
+        #   run: ls -la rpm/RPMS/noarch
         - uses: actions/upload-artifact@v3
           with:
             name: hello_world.rpm
